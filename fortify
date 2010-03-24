@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Prepare a fort VM
+#
+# From a fresh Debian install with root/root & fort/fort
+# First install ssh (apt-get install ssh) and scp this repo (vmsetup) to /home/fort/vmsetup
+# Then run this file as root
+apt-get -y install mysql-server libapache2-svn apache2 python-mysqldb build-essential m4 perl python zlib1g-dev uuid-dev wget autoconf automake libtool gettext subversion python-imaging python-cairo userv less python-setuptools xemacs21
+easy_install Trac
+easy_install TracMasterTickets
+easy_install TracAccountManager
+useradd -d /home/trac -m -U -p '$1$nIxpy5j6$dlyq43mxrMK.XInG2oqcS.' trac # trac/trac
+useradd -d /home/svn -m -U -p '$1$iYwM3GIF$YZgZCaDFHYd1.u.2XY.OV.' svn # svn/svn
+a2enmod actions auth_digest dav dav_svn expires headers rewrite proxy proxy_http
+cp svn/dav_svn.conf /etc/apache/mods-enabled/
+cp trac/proxy.conf /etc/apache/mods-enabled/
+chmod o=rx /var/log/apache2
+chmod o=rx /var/log/apache2/access.log
+chmod o=rx /var/log/apache2/error.log
+su -l -c trac/fortify trac
+su -l -c svn/fortify svn

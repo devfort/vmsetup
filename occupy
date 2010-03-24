@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Turn a blank fort VM into core.fort
+#
+# Create a users file in this directory with a list of usernames, one per line
+# Then run this file as root
+[ ! -f users ] && echo "Do not run without creating a users file" && exit 0
+su -l -c "trac/occupy $*" trac
+su -l -c "svn/occupy $*" svn

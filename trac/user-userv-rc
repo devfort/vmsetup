@@ -1,0 +1,17 @@
+if ( glob service init.d/tracd
+   & glob calling-group root trac
+   )
+        reset
+        no-suppress-args
+        execute etc/init.d/tracd
+        quit
+fi
+
+if ( glob service post-commit-hook
+   & glob calling-group svn
+   )
+        reset
+        no-suppress-args
+        execute trac-post-commit-hook
+        quit
+fi

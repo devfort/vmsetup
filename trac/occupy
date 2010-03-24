@@ -1,0 +1,12 @@
+#!/bin/sh
+FILES=/home/fort/vmsetup
+[ ! -f $FILES/users ] && echo "Do not run without creating a users file" && exit 0
+project_name="${1:=fort}"
+
+for u in `cat $FILES/users`; do
+  ./trac-digest.py --username $u --password $u --realm core.fort >> users.htdigest
+done
+
+# create trac env
+trac-admin /home/trac/core.fort initenv $project_name sqlite:db/trac.db svn /home/svn/root
+# FIXME: fix conf

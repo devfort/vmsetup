@@ -1,0 +1,33 @@
+#!/bin/sh
+
+PIDFILE=tracd.pid
+
+tracd_start() {
+  umask 022
+  /usr/bin/tracd \
+        --hostname localhost --port 8000 \
+        --pidfile=tracd.pid -d \
+        --auth=core.fort,/home/trac/users.htdigest,core.fort \
+        /home/trac/core.fort \
+  chmod 644 tracd.pid
+}
+
+tracd_stop() {
+  [ -f "$PIDFILE" ] || exit 1
+  kill -INT `cat "$PIDFILE"`
+}
+
+case $1 in
+start)
+  tracd_start ;;
+stop)
+  tracd_stop ;;
+restart|reload)
+  tracd_stop
+  tracd_start ;;
+*)
+  echo "$0: Action '$1' not understood" 1>&2
+  exit 1
+esac
+
+exit 0
