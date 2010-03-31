@@ -12,10 +12,12 @@ easy_install TracAccountManager
 useradd -d /home/trac -m -U -p '$1$nIxpy5j6$dlyq43mxrMK.XInG2oqcS.' trac # trac/trac
 useradd -d /home/svn -m -U -p '$1$iYwM3GIF$YZgZCaDFHYd1.u.2XY.OV.' svn # svn/svn
 a2enmod actions auth_digest dav dav_svn expires headers rewrite proxy proxy_http
-cp svn/dav_svn.conf /etc/apache/mods-enabled/
-cp trac/proxy.conf /etc/apache/mods-enabled/
+cp svn/dav_svn.conf /etc/apache2/mods-enabled/
+cp trac/proxy.conf /etc/apache2/mods-enabled/
+cp trac/root-init-script /etc/init.d/trac
 chmod o=rx /var/log/apache2
 chmod o=rx /var/log/apache2/access.log
 chmod o=rx /var/log/apache2/error.log
 su -l -c trac/fortify trac
 su -l -c svn/fortify svn
+update-rc.d trac defaults
