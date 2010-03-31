@@ -1,6 +1,6 @@
 #!/bin/sh
-FILES=/home/fort/vmsetup
-[ ! -f $FILES/users ] && echo "Do not run without creating a users file" && exit 0
+FILES=`dirname "$0"`
+[ ! -f $FILES/../users ] && echo "Do not run without creating a users file" && exit 0
 project_name="${1:=fort}"
 
 svnadmin create root

@@ -1,2 +1,2 @@
 #!/bin/sh
-FILES=/home/fort/vmsetup
+FILES=`dirname "$0"`
