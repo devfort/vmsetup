@@ -1,8 +1,8 @@
 #!/bin/sh
-FILES=/home/fort/vmsetup
+FILES=`dirname "$0"`
 mkdir etc etc/init.d .userv
-cp $FILES/trac/user-init-script etc/init.d/tracd
-cp $FILES/trac/user-userv-rc .userv/rc
-cp $FILES/trac/user-hook trac-post-commit-hook
+cp $FILES/user-init-script etc/init.d/tracd
+cp $FILES/user-userv-rc .userv/rc
+cp $FILES/user-hook trac-post-commit-hook
 chmod 755 trac-post-commit-hook
 touch users.htdigest
