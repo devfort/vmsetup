@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Try to undo the fortify / occupy actions
+a2dismod actions auth_digest dav dav_svn expires headers rewrite proxy proxy_http
+rm /etc/apache2/mods-enabled/dav_svn.conf
+rm /etc/apache2/mods-enabled/proxy.conf
+rm /etc/init.d/trac
+update-rc.d trac remove
+deluser --force --remove-home trac
+deluser --force --remove-home svn
