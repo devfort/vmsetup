@@ -4,8 +4,9 @@ PIDFILE=tracd.pid
 
 tracd_start() {
   umask 022
-  /usr/bin/tracd \
+  /usr/bin/tracd -s \
         --hostname localhost --port 8000 \
+        --base-path=/trac \
         --pidfile=tracd.pid -d \
         --auth=core.fort,/home/trac/users.htdigest,core.fort \
         /home/trac/core.fort \
