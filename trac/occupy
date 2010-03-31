@@ -13,8 +13,8 @@ done
 # create trac env
 trac-admin /home/trac/core.fort initenv $project_name sqlite:db/trac.db svn /home/svn/root
 # change permissions
-trac-admin /home/trac/core.fort permission remove anonymous *
-trac-admin /home/trac/core.fort permission remove authenticated *
+trac-admin /home/trac/core.fort permission remove anonymous '*'
+trac-admin /home/trac/core.fort permission remove authenticated '*'
 trac-admin /home/trac/core.fort permission add authenticated \
   BROWSER_VIEW CHANGESET_VIEW FILE_VIEW LOG_VIEW \
   MILESTONE_VIEW MILESTONE_MODIFY \
@@ -40,6 +40,9 @@ blocking =text
 blocking.label = Blocking
 
 END
+
+# and upgrade following enabling the plugin
+trac-admin /home/trac/core.fort upgrade
 
 # and restart the tracd
 /home/trac/etc/init.d/tracd start
