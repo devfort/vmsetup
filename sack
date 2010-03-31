@@ -3,7 +3,7 @@
 # Try to undo the fortify / occupy actions
 /etc/init.d/apache2 stop
 /etc/init.d/trac stop
-a2dismod actions auth_digest dav dav_svn expires headers rewrite proxy_http proxy
+a2dismod actions auth_digest dav_svn dav expires headers rewrite proxy_http proxy
 rm /etc/apache2/mods-enabled/dav_svn.conf
 rm /etc/apache2/mods-enabled/proxy.conf
 rm /etc/init.d/trac
