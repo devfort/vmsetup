@@ -3,6 +3,6 @@ FILES=`dirname "$0"`
 mkdir etc etc/init.d .userv
 cp $FILES/user-init-script etc/init.d/tracd
 cp $FILES/user-userv-rc .userv/rc
-cp $FILES/user-hook trac-post-commit-hook
+cp $FILES/trac-post-commit-hook trac-post-commit-hook
 chmod 755 trac-post-commit-hook
 touch users.htdigest
