@@ -7,6 +7,6 @@
 cd `dirname "$0"`
 THISDIR=`pwd`
 [ ! -f $THISDIR/users ] && echo "Do not run without creating a users file" && exit 0
-[ "x$1"="x" ] && echo "What's your project name? Eh?" && exit 0
-su -l -c "$THISDIR/trac/fortify $*" trac
-su -l -c "$THISDIR/svn/fortify $*" svn
+[ "x$1" = "x" ] && echo "What's your project name? Eh?" && exit 0
+su -l -c "$THISDIR/svn/occupy $*" svn
+su -l -c "$THISDIR/trac/occupy $*" trac
