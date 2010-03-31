@@ -7,6 +7,38 @@ for u in `cat $FILES/../users`; do
   $FILES/trac-digest.py --username $u --password $u --realm core.fort >> users.htdigest
 done
 
+# stop the tracd (just a little safer)
+/home/trac/etc/init.d/tracd stop
+
 # create trac env
 trac-admin /home/trac/core.fort initenv $project_name sqlite:db/trac.db svn /home/svn/root
-# FIXME: fix conf
+# change permissions
+trac-admin /home/trac/core.fort permission remove anonymous *
+trac-admin /home/trac/core.fort permission add authenticated \
+  BROWSER_VIEW CHANGESET_VIEW FILE_VIEW LOG_VIEW \
+  MILESTONE_VIEW MILESTONE_MODIFY \
+  PERMISSION_ADMIN PERMISSION_GRANT PERMISSION_REVOKE \
+  REPORT_VIEW REPORT_SQL_VIEW REPORT_ADMIN REPORT_CREATE REPORT_DELETE REPORT_MODIFY \
+  ROADMAP_ADMIN ROADMAP_VIEW \
+  SEARCH_VIEW \
+  TICKET_ADMIN TICKET_APPEND TICKET_CHGPROP TICKET_CREATE \
+  TICKET_EDIT_CC TICKET_EDIT_DESCRIPTION TICKET_MODIFY TICKET_VIEW \
+  TIMELINE_VIEW \
+  TRAC_ADMIN WIKI_ADMIN WIKI_CREATE WIKI_DELETE WIKI_MODIFY WIKI_VIEW
+
+# fix conf to enable our extra plugins
+cat >> /home/trac/core.fort/conf/trac.ini <<END
+
+[components]
+mastertickets.* = enabled
+
+[ticket-custom]
+blockedby = text
+blockedby.label = Blocked By
+blocking =text
+blocking.label = Blocking
+
+END
+
+# and restart the tracd
+/home/trac/etc/init.d/tracd start
