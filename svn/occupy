@@ -4,6 +4,6 @@ FILES=`dirname "$0"`
 project_name="${1:=fort}"
 
 svnadmin create root
-svn checkout file:///root tmp
+svn checkout file:///home/svn/root tmp
 (cd tmp; svn mkdir trunk tags branches; svn commit -m "Initial repository layout")
 rm -rf tmp
