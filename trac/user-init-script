@@ -9,7 +9,7 @@ tracd_start() {
         --base-path=/trac \
         --pidfile=tracd.pid -d \
         --auth=core.fort,/home/trac/users.htdigest,core.fort \
-        /home/trac/core.fort \
+        /home/trac/core.fort
   chmod 644 tracd.pid
 }
 
