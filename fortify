@@ -10,7 +10,7 @@ THISDIR=`pwd`
 apt-get -y \
   install mysql-server libapache2-svn apache2 python-mysqldb build-essential m4 perl python \
   zlib1g-dev uuid-dev wget autoconf automake libtool gettext subversion python-imaging \
-  python-cairo userv less python-setuptools xemacs21 python-subversion
+  python-cairo userv less python-setuptools xemacs21 python-subversion nfs-common
 easy_install Trac
 easy_install TracMasterTickets
 easy_install TracAccountManager
