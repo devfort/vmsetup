@@ -7,3 +7,7 @@ svnadmin create root
 svn checkout file:///home/svn/root tmp
 (cd tmp; svn mkdir trunk tags branches; svn commit -m "Initial repository layout")
 rm -rf tmp
+# we need www-data to be able to access the dav directory of the repo
+mkdir /home/svn/root/dav
+chgrp www-data /home/svn/root/dav
+chmod g+ws /home/svn/root/dav

@@ -8,5 +8,7 @@ cd `dirname "$0"`
 THISDIR=`pwd`
 [ ! -f $THISDIR/users ] && echo "Do not run without creating a users file" && exit 0
 [ "x$1" = "x" ] && echo "What's your project name? Eh?" && exit 0
+# svn must be able to set some of its files to group www-data (for svndav)
+addgroup svn www-data
 su -l -c "$THISDIR/svn/occupy $*" svn
 su -l -c "$THISDIR/trac/occupy $*" trac
