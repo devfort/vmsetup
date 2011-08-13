@@ -9,5 +9,5 @@ svn checkout file:///home/svn/root tmp
 rm -rf tmp
 # we need www-data to be able to access the dav directory of the repo
 mkdir /home/svn/root/dav
-chgrp www-data /home/svn/root/dav
-chmod g+ws /home/svn/root/dav
+chgrp www-data /home/svn/root
+chmod g+ws /home/svn/root
