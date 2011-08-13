@@ -2,7 +2,7 @@
 #
 # Prepare a fort VM
 #
-# From a fresh Debian install with root/root & fort/fort
+# From a fresh Ubuntu install with root/root & fort/fort
 # First install ssh (apt-get install ssh) and scp this repo (vmsetup) to /home/fort/vmsetup
 # Then run this file as root
 cd `dirname "$0"`
@@ -14,6 +14,7 @@ apt-get -y \
 easy_install Trac
 easy_install TracMasterTickets
 easy_install TracAccountManager
+easy_install TracGit
 useradd -d /home/trac -m -U -p '$1$nIxpy5j6$dlyq43mxrMK.XInG2oqcS.' trac # trac/trac
 useradd -d /home/svn -m -U -p '$1$iYwM3GIF$YZgZCaDFHYd1.u.2XY.OV.' svn # svn/svn
 a2enmod actions auth_digest dav dav_svn expires headers rewrite proxy proxy_http
